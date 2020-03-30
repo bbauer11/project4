@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class ConcordanceDataStructure implements ConcordanceDataStructureInterface{
@@ -6,6 +7,7 @@ public class ConcordanceDataStructure implements ConcordanceDataStructureInterfa
 	int tableSize;
 	String test;
 	LinkedList<ConcordanceDataElement>[] list; //is this right, how initialize
+	HashMap<?, ?> h;
 	
 	public ConcordanceDataStructure(String test, int size) {
 		this.test = test;

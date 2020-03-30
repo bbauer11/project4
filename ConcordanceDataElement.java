@@ -1,5 +1,10 @@
 import java.util.LinkedList;
 
+/**
+ * Represents a word connected with a list of integers where the word is found.
+ * @author Brian Bauer
+ *
+ */
 public class ConcordanceDataElement implements Comparable<ConcordanceDataElement> {
 
 	String word;
@@ -14,8 +19,12 @@ public class ConcordanceDataElement implements Comparable<ConcordanceDataElement
 		return word;
 	}
 	
-	public String toString() {
-		throw new UnsupportedOperationException();
+	public String toString() {		//test this
+		String toReturn = word + ": ";
+		for (int s: list) {
+			toReturn += s + ",";
+		}
+		return toReturn.substring(0, toReturn.length() - 1);
 	}
 	
 	public int hashCode() {
