@@ -1,14 +1,15 @@
 import java.util.LinkedList;
 
 /**
- * Represents a word connected with a list of integers where the word is found.
+ * Represents a word connected with a list of integers representing the line which 
+ * the word occurs.
  * @author Brian Bauer
  *
  */
 public class ConcordanceDataElement implements Comparable<ConcordanceDataElement> {
 
-	String word;
-	LinkedList<Integer> list; 
+	private String word;
+	private LinkedList<Integer> list; 
 	
 	public ConcordanceDataElement(String word) {
 		this.word = word;
@@ -19,33 +20,40 @@ public class ConcordanceDataElement implements Comparable<ConcordanceDataElement
 		return word;
 	}
 	
-	public String toString() {		//test this
+	/**
+	 * Creates a String in the form: "word: 1,5,10"
+	 */
+	public String toString() {		
 		String toReturn = word + ": ";
 		for (int s: list) {
-			toReturn += s + ",";
+			toReturn += s + ", ";
 		}
-		return toReturn.substring(0, toReturn.length() - 1);
+		return toReturn.substring(0, toReturn.length() - 2);
 	}
 	
 	public int hashCode() {
-		return word.hashCode();
+		return Math.abs(word.hashCode()%20);
 	}
 	
 	public LinkedList<Integer> getList() {
 		return list;
 	}
 	
-	public void addPage(int lineNum) {		//should this rearrange? will numbers be added in order automatically?
-		list.add(lineNum);
+	/**
+	 * Adds a new line to the list if it is not already there.
+	 * @param lineNum
+	 */
+	public void addPage(int lineNum) {	
+		if (!list.contains(lineNum))
+			list.add(lineNum);
 	}
 	 
 	
 	
 	
-	@Override
-	public int compareTo(ConcordanceDataElement o) {
-		// TODO Auto-generated method stub
-		return 0;
+	@Override		//what is this used for, what are we comparing
+	public int compareTo(ConcordanceDataElement arg0) {
+		return this.word.compareTo(arg0.getWord());
 	}
 
 }
